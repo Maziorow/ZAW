@@ -4,3 +4,7 @@
 **/pedestrian
 **/results
 **/lab03_fos
+*.pch
+*.mp4
+*.png
+*.mdl
