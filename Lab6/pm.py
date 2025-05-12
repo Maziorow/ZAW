@@ -2,16 +2,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def appendimages(im1,im2):    
-    rows1 = im1.shape[0]    
-    rows2 = im2.shape[0]
-    
+def appendimages(im1, im2):
+    # Ensure both images are 3-channel (RGB)
+    if len(im1.shape) == 2:
+        im1 = np.stack([im1] * 3, axis=-1)
+    if len(im2.shape) == 2:
+        im2 = np.stack([im2] * 3, axis=-1)
+
+    rows1, cols1, ch1 = im1.shape
+    rows2, cols2, ch2 = im2.shape
+
+    # Pad shorter image to match height
     if rows1 < rows2:
-        im1 = np.concatenate((im1,np.zeros((rows2-rows1,im1.shape[1]))),axis=0)
+        pad = np.zeros((rows2 - rows1, cols1, ch1), dtype=im1.dtype)
+        im1 = np.concatenate((im1, pad), axis=0)
     elif rows1 > rows2:
-        im2 = np.concatenate((im2,np.zeros((rows1-rows2,im2.shape[1]))),axis=0)
-    
-    return np.concatenate((im1,im2), axis=1)    
+        pad = np.zeros((rows1 - rows2, cols2, ch2), dtype=im2.dtype)
+        im2 = np.concatenate((im2, pad), axis=0)
+
+    return np.concatenate((im1, im2), axis=1)
+   
     
     
 def plot_matches(im1,im2,matches):
