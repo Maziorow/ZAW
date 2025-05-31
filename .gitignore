@@ -15,5 +15,7 @@ Lab7/sequences/
 Lab13/shapes_rotation/
 *.wm
 Lab10/neural_network/
+Lab10/silhouettes_raw/
+Lab10/silhouettes/
 Lab11/pedestrians/
-Lab11/Test images-pedestrians/
+Lab11/test/
